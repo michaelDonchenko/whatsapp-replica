@@ -27,9 +27,12 @@ const Header = styled.div`
 `
 
 const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
   background-color: #f4f0ec;
   height: 50px;
   border-bottom: 1px solid lightgrey;
+  padding: 0 10px;
 `
 
 export default SideContainer
