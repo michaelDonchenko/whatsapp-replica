@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ReactComponent as Search } from '../icons/magnify.svg'
+import { ReactComponent as Search } from '../assets/icons/magnify.svg'
 
 const SearchBar = () => {
   return (
@@ -23,7 +23,7 @@ const Input = styled.input`
   color: gray;
   outline: none;
   border: none;
-  padding-left: 10%;
+  padding-left: 15%;
   padding-right: 5%;
 `
 const SearchIcon = styled(Search)`
