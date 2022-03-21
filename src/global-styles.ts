@@ -9,6 +9,10 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
+html {
+  font-family: sans-serif;
+}
+
 body {
   width: 100%;
   height: 100vh;
