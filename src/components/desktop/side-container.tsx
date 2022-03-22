@@ -1,16 +1,24 @@
 import styled from 'styled-components'
 import ProfileImage from '../profile-image'
 import SearchBar from '../search-bar'
-import MyImage from '../../assets/images/my-user.jpg'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 import { ReactComponent as Message } from '../../assets/icons/message-text.svg'
 import ChatList from '../chat-list'
+import { User } from '../../types/user'
+import { Contact as ContactI } from '../../types/user'
 
-const SideContainer = () => {
+interface SideContainerI {
+  setActiveChat: React.Dispatch<React.SetStateAction<ContactI | null>>
+  user: User
+}
+
+const SideContainer: React.FC<SideContainerI> = ({ user, setActiveChat }) => {
+  const { contacts } = user
+
   return (
     <Container>
       <Header>
-        <ProfileImage src={MyImage} />
+        <ProfileImage src={user.imgUrl} />
         <MessageIcon />
         <DotsIcon />
       </Header>
@@ -19,13 +27,14 @@ const SideContainer = () => {
         <SearchBar />
       </SearchWrapper>
 
-      <ChatList />
+      <ChatList contacts={contacts} setActiveChat={setActiveChat} />
     </Container>
   )
 }
 
 const Container = styled.div`
   width: 30%;
+  min-width: 200px;
   height: 100%;
   border-right: 1px solid lightgrey;
 `

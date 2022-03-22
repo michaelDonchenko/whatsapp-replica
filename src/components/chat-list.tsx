@@ -1,27 +1,40 @@
 import styled from 'styled-components'
-import User1 from '../assets/images/user1.jpg'
+import { Contact as ContactI } from '../types/user'
 import ProfileImage from './profile-image'
 
-const ChatList = () => {
+interface ChatListI {
+  contacts: ContactI[]
+  setActiveChat: React.Dispatch<React.SetStateAction<ContactI | null>>
+}
+
+const ChatList: React.FC<ChatListI> = ({ contacts, setActiveChat }) => {
   return (
     <Container>
-      <Contact />
-      <Contact />
-      <Contact />
+      {contacts &&
+        contacts.map((contact) => (
+          <Contact key={contact.contactName} contact={contact} />
+        ))}
     </Container>
   )
 }
 
-const Contact = () => {
+export const Contact: React.FC<{ contact: ContactI }> = ({ contact }) => {
+  const lastMessageText = contact.messages[
+    contact.messages.length - 1
+  ].messageText.slice(0, 9)
+
+  const lastMessageTime =
+    contact.messages[contact.messages.length - 1].createdAt
+
   return (
     <ChatContact>
-      <ProfileImage src={User1} />
+      <ProfileImage src={contact.imgUrl} />
       <NameContainer>
-        <Name>Name</Name>
-        <LightText>test</LightText>
+        <Name>{contact.contactName}</Name>
+        <LightText>{lastMessageText + ' ...'}</LightText>
       </NameContainer>
 
-      <LightText>2:01</LightText>
+      <LightText>{lastMessageTime}</LightText>
     </ChatContact>
   )
 }
@@ -34,9 +47,11 @@ const Container = styled.div`
 const ChatContact = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
   height: 60px;
   background-color: white;
   padding: 0 15px;
+  cursor: pointer;
 
   &:hover {
     background-color: lightgray;
