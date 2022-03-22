@@ -13,6 +13,7 @@ export interface Contact {
 }
 
 export interface Message {
+  id: string
   createdAt: string
   messageText: string
   sentFrom: string

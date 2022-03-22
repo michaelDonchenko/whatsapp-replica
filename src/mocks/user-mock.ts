@@ -15,18 +15,21 @@ export const user: User = {
       unreadMessages: 3,
       messages: [
         {
+          id: 'idjsidsjisa',
           createdAt: '02:00',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'my user',
         },
         {
+          id: 'idjsidsjisfdfdda',
           createdAt: '02:02',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'my user',
         },
         {
+          id: 'idjsidsjidfsdfdfdsfsa',
           createdAt: '02:03',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
@@ -41,18 +44,21 @@ export const user: User = {
       unreadMessages: 0,
       messages: [
         {
+          id: 'idjsfdfddfdsfsa',
           createdAt: '04:30',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'user2',
         },
         {
+          id: 'idjsidsjidfsdrewrrerewfdfdsfsa',
           createdAt: '04:31',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'user2',
         },
         {
+          id: 'idjsidsjirewrwerwedfsdfdfdsfsa',
           createdAt: '04:35',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
@@ -67,18 +73,21 @@ export const user: User = {
       unreadMessages: 0,
       messages: [
         {
+          id: 'idjsidsjdsadasasidfsdfdfdsfsa',
           createdAt: '03:45',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'user3',
         },
         {
+          id: 'idjsidsjidsdssdfsdfdfdsfsa',
           createdAt: '03:50',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'user3',
         },
         {
+          id: 'idjsadsassidsjdsdasdsdidfsdfdfdsfsa',
           createdAt: '03:51',
           messageText:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',

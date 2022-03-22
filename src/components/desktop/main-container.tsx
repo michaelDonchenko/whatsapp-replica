@@ -1,34 +1,44 @@
 import styled from 'styled-components'
-import User1 from '../../assets/images/user1.jpg'
 import ProfileImage from '../profile-image'
 import { ReactComponent as Clip } from '../../assets/icons/paperclip.svg'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 import { ReactComponent as Happy } from '../../assets/icons/happy.svg'
 import { ReactComponent as Microphone } from '../../assets/icons/microphone.svg'
 import Message from '../message'
+import { useAppSelector } from '../../redux/hooks'
 
 const MessagesContainer = () => {
+  const myUsername = useAppSelector((state) => state.user.user.username)
+  const activeChat = useAppSelector((state) => state.user.activeChat)
+
   return (
     <Container>
       <Header>
-        <ProfileImage src={User1} />
-        <NameContainer>
-          <Name>Name</Name>
-          <LightText>test</LightText>
-        </NameContainer>
+        {activeChat && (
+          <>
+            <ProfileImage src={activeChat.imgUrl} />
+            <NameContainer>
+              <Name>{activeChat.contactName}</Name>
+              <LightText>{activeChat.lastConnected}</LightText>
+            </NameContainer>
 
-        <ClipIcon />
-        <DotsIcon />
+            <ClipIcon />
+            <DotsIcon />
+          </>
+        )}
       </Header>
 
       <Messages>
-        <Message
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.'
-          isMyMessage={true}
-          time='02:02'
-        />
-        <Message time='02:02' text='test' isMyMessage={true} />
-        <Message time='02:02' text='test' isMyMessage={false} />
+        {activeChat &&
+          activeChat.messages.length > 0 &&
+          activeChat.messages.map((message) => (
+            <Message
+              key={message.id}
+              text={message.messageText}
+              isMyMessage={message.sentFrom === myUsername}
+              time={message.createdAt}
+            />
+          ))}
       </Messages>
 
       <NewMessage>

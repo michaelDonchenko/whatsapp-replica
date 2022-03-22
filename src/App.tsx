@@ -1,14 +1,13 @@
-import { user as userMock } from './mocks/user-mock'
 import { GlobalStyles } from './global-styles'
 import Layout from './components/layout'
 import DesktopWrapper from './components/desktop/desktop-wrapper'
 import MobileWrapper from './components/mobile/mobile-wrapper'
 import { useState } from 'react'
-import { User } from './types/user'
 import { useEffect } from 'react'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 
 const App = () => {
-  const [user, setUser] = useState<User>(userMock)
   const [width, setWidth] = useState(window.innerWidth)
 
   useEffect(() => {
@@ -24,11 +23,13 @@ const App = () => {
   }, [])
 
   return (
-    <Layout>
-      <GlobalStyles />
+    <Provider store={store}>
+      <Layout>
+        <GlobalStyles />
 
-      {width > 500 ? <DesktopWrapper user={user} /> : <MobileWrapper />}
-    </Layout>
+        {width > 500 ? <DesktopWrapper /> : <MobileWrapper />}
+      </Layout>
+    </Provider>
   )
 }
 

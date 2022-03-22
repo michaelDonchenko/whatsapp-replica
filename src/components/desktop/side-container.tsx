@@ -4,15 +4,10 @@ import SearchBar from '../search-bar'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 import { ReactComponent as Message } from '../../assets/icons/message-text.svg'
 import ChatList from '../chat-list'
-import { User } from '../../types/user'
-import { Contact as ContactI } from '../../types/user'
+import { useAppSelector } from '../../redux/hooks'
 
-interface SideContainerI {
-  setActiveChat: React.Dispatch<React.SetStateAction<ContactI | null>>
-  user: User
-}
-
-const SideContainer: React.FC<SideContainerI> = ({ user, setActiveChat }) => {
+const SideContainer: React.FC = () => {
+  const { user } = useAppSelector((state) => state.user)
   const { contacts } = user
 
   return (
@@ -27,7 +22,7 @@ const SideContainer: React.FC<SideContainerI> = ({ user, setActiveChat }) => {
         <SearchBar />
       </SearchWrapper>
 
-      <ChatList contacts={contacts} setActiveChat={setActiveChat} />
+      <ChatList contacts={contacts} />
     </Container>
   )
 }

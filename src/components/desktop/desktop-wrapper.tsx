@@ -1,17 +1,11 @@
-import { useState } from 'react'
 import styled from 'styled-components'
-import { User } from '../../types/user'
-import { Contact } from '../chat-list'
 import MessagesContainer from './main-container'
 import SideContainer from './side-container'
-import { Contact as ContactI } from '../../types/user'
 
-const DesktopWrapper: React.FC<{ user: User }> = ({ user }) => {
-  const [activeChat, setActiveChat] = useState<ContactI | null>(null)
-
+const DesktopWrapper: React.FC = () => {
   return (
     <Container>
-      <SideContainer user={user} setActiveChat={setActiveChat} />
+      <SideContainer />
       <MessagesContainer />
     </Container>
   )
