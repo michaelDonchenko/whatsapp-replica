@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { ReactComponent as Search } from '../../assets/icons/magnify.svg'
 import { ReactComponent as Message } from '../../assets/icons/message-text.svg'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 
@@ -8,8 +7,6 @@ const ActionsHeader: React.FC = () => {
     <Container>
       <ActionsSection>
         <Logo>WhatsApp</Logo>
-
-        <SearchIcon />
 
         <MessageIcon />
 
@@ -44,13 +41,6 @@ const Logo = styled.div`
   font-size: 22px;
   font-weight: 500;
   flex-grow: 1;
-`
-
-const SearchIcon = styled(Search)`
-  fill: white;
-  width: 26px;
-  height: 26px;
-  margin-right: 15px;
 `
 
 const DotsIcon = styled(Dots)`

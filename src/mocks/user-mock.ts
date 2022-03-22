@@ -30,13 +30,6 @@ export const user: User = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
           sentFrom: 'my user',
         },
-        {
-          id: 'idjsidsjidfsdfdfdsfsa',
-          createdAt: '02:03',
-          messageText:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
-          sentFrom: 'user1',
-        },
       ],
     },
     {
@@ -45,6 +38,13 @@ export const user: User = {
       lastConnected: 'monday',
       unreadMessages: 3,
       messages: [
+        {
+          id: 'idjsidsjisfdfdda',
+          createdAt: '02:02',
+          messageText:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt lobortis sem eget laoreet.',
+          sentFrom: 'my user',
+        },
         {
           id: 'idjsfdfddfdsfsa',
           createdAt: '04:30',

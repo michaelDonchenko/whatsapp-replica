@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import MessagesContainer from '../messages/messages-container'
 
-const MainContainer: React.FC = () => {
+const ChatRoom: React.FC = () => {
   return (
     <Container>
       <MessagesContainer />
@@ -12,9 +12,9 @@ const MainContainer: React.FC = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   height: 100%;
   overflow-y: auto;
 `
 
-export default MainContainer
+export default ChatRoom

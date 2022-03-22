@@ -24,9 +24,13 @@ export const userSlice = createSlice({
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload
     },
+    clearActiveChat: (state) => {
+      state.activeChat = null
+    },
   },
 })
 
-export const { setActiveChat, setSearchQuery } = userSlice.actions
+export const { setActiveChat, setSearchQuery, clearActiveChat } =
+  userSlice.actions
 
 export default userSlice.reducer

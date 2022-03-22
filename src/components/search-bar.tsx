@@ -25,6 +25,7 @@ const InputContainer = styled.div`
 `
 
 const Input = styled.input`
+  border-radius: 6px;
   background-color: white;
   width: 100%;
   height: 30px;
