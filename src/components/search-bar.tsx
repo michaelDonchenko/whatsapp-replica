@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 import { ReactComponent as Search } from '../assets/icons/magnify.svg'
+import { useAppDispatch } from '../redux/hooks'
+import { setSearchQuery } from '../redux/userSlice'
 
 const SearchBar: React.FC = () => {
+  const dispatch = useAppDispatch()
+
   return (
     <InputContainer>
-      <Input type='text' placeholder='Search or start new chat ' />
+      <Input
+        type='text'
+        placeholder='Search or start new chat'
+        onChange={(event) => dispatch(setSearchQuery(event.target.value))}
+      />
       <SearchIcon />
     </InputContainer>
   )
