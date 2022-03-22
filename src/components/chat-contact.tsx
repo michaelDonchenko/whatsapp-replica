@@ -29,10 +29,18 @@ const ChatContact: React.FC<{ contact: Contact }> = ({ contact }) => {
       <ProfileImage src={contact.imgUrl} />
       <NameContainer>
         <Name>{contact.contactName}</Name>
-        <LightText>{lastMessageText + ' ...'}</LightText>
+        <LastMessageText>{lastMessageText + ' ...'}</LastMessageText>
       </NameContainer>
 
-      <LightText>{lastMessageTime}</LightText>
+      <TimeContainer>
+        <LastMessageTime hasUnreadMessages={contact.unreadMessages > 0}>
+          {lastMessageTime}
+        </LastMessageTime>
+
+        {contact.unreadMessages > 0 && (
+          <UnreadMessagesBadge>{contact.unreadMessages}</UnreadMessagesBadge>
+        )}
+      </TimeContainer>
     </Container>
   )
 }
@@ -59,15 +67,43 @@ const NameContainer = styled.div`
   justify-content: center;
 `
 
+const TimeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  justify-content: center;
+`
+
 const Name = styled.div`
   font-size: 16px;
   font-weight: 500;
 `
 
-const LightText = styled.div`
+const LastMessageText = styled.div`
   font-size: 14px;
   font-weight: 300;
   color: gray;
+`
+
+const LastMessageTime = styled.div<{ hasUnreadMessages: boolean }>`
+  font-size: 14px;
+  font-weight: 300;
+  color: ${(props) => (props.hasUnreadMessages ? '#25d366' : 'gray')};
+`
+
+const UnreadMessagesBadge = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: white;
+  background-color: #25d366;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  margin-top: 4px;
 `
 
 export default ChatContact

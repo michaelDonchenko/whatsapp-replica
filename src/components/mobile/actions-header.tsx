@@ -72,11 +72,11 @@ const PagesSelection = styled.div`
   height: 60px;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `
 
 const PageLink = styled.a`
-  width: 90px;
+  padding: 0 6%;
   text-align: center;
   text-decoration: none;
   color: lightgray;
