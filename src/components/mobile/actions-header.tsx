@@ -3,7 +3,7 @@ import { ReactComponent as Search } from '../../assets/icons/magnify.svg'
 import { ReactComponent as Message } from '../../assets/icons/message-text.svg'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 
-const ActionsHeader = () => {
+const ActionsHeader: React.FC = () => {
   return (
     <Container>
       <ActionsSection>

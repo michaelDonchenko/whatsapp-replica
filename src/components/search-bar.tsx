@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ReactComponent as Search } from '../assets/icons/magnify.svg'
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   return (
     <InputContainer>
       <Input type='text' placeholder='Search or start new chat ' />

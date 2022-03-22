@@ -3,7 +3,7 @@ import { ReactComponent as Battery } from '../../assets/icons/battery.svg'
 import { ReactComponent as Network } from '../../assets/icons/network.svg'
 import { ReactComponent as Wifi } from '../../assets/icons/wifi.svg'
 
-const TopBar = () => {
+const TopBar: React.FC = () => {
   return (
     <Container>
       <WifiIcon />

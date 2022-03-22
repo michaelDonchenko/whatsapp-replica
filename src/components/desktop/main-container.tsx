@@ -7,7 +7,7 @@ import { ReactComponent as Microphone } from '../../assets/icons/microphone.svg'
 import Message from '../message'
 import { useAppSelector } from '../../redux/hooks'
 
-const MessagesContainer = () => {
+const MessagesContainer: React.FC = () => {
   const myUsername = useAppSelector((state) => state.user.user.username)
   const activeChat = useAppSelector((state) => state.user.activeChat)
 

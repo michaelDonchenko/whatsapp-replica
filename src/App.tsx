@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 
-const App = () => {
+const App: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth)
 
   useEffect(() => {

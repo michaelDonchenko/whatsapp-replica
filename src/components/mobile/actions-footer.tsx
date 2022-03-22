@@ -3,7 +3,7 @@ import { ReactComponent as Circle } from '../../assets/icons/circle-outline.svg'
 import { ReactComponent as Triangle } from '../../assets/icons/triangle-outline.svg'
 import { ReactComponent as Square } from '../../assets/icons/square-outline.svg'
 
-const ActionsFooter = () => {
+const ActionsFooter: React.FC = () => {
   return (
     <Container>
       <IconsWrapper>

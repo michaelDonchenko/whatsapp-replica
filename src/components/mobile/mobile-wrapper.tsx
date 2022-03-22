@@ -5,7 +5,7 @@ import ActionsFooter from './actions-footer'
 import ActionsHeader from './actions-header'
 import TopBar from './top-bar'
 
-const MobileWrapper = () => {
+const MobileWrapper: React.FC = () => {
   const { contacts } = useAppSelector((state) => state.user.user)
   return (
     <Container>
