@@ -35,6 +35,10 @@ export const userSlice = createSlice({
     clearActiveChat: (state) => {
       state.activeChat = null
     },
+    onFirebaseLogout: (state) => {
+      state.isAuth = false
+      state.user = null
+    },
   },
 })
 
@@ -43,6 +47,7 @@ export const {
   setSearchQuery,
   clearActiveChat,
   onFirebaseLoginSuccess,
+  onFirebaseLogout,
 } = userSlice.actions
 
 export default userSlice.reducer

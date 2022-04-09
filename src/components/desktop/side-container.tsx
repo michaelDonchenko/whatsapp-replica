@@ -4,8 +4,10 @@ import SearchBar from '../search-bar'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 import { ReactComponent as Add } from '../../assets/icons/add.svg'
 import ChatList from '../chat-list'
-import { useAppSelector } from '../../redux/hooks'
-import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { useState, useRef, useEffect } from 'react'
+import { firebaseLogout } from '../../firebase'
+import { onFirebaseLogout } from '../../redux/userSlice'
 
 interface SideContainerProps {
   setContactsSidebar: React.Dispatch<React.SetStateAction<boolean>>
@@ -16,6 +18,33 @@ const SideContainer: React.FC<SideContainerProps> = ({
 }) => {
   const { user } = useAppSelector((state) => state.user)
   const [openDropdown, setOpenDropdown] = useState(false)
+  const dispatch = useAppDispatch()
+  const dropdownRef = useRef(null)
+
+  const onLogout = async () => {
+    try {
+      await firebaseLogout()
+      dispatch(onFirebaseLogout())
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setOpenDropdown(false)
+    }
+  }
+
+  const clickListener = (event: MouseEvent) => {
+    if (dropdownRef && dropdownRef.current) {
+      setOpenDropdown(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', clickListener)
+
+    return () => {
+      document.removeEventListener('mousedown', clickListener)
+    }
+  }, [])
 
   return (
     <Container>
@@ -26,9 +55,9 @@ const SideContainer: React.FC<SideContainerProps> = ({
 
         <DotsIcon onClick={() => setOpenDropdown(!openDropdown)} />
         {openDropdown && (
-          <DropdownCopntainer>
+          <DropdownCopntainer ref={dropdownRef}>
             <Option>Add contact</Option>
-            <Option>Logout</Option>
+            <Option onClick={() => onLogout()}>Logout</Option>
           </DropdownCopntainer>
         )}
       </Header>
