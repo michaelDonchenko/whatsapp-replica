@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Contact, User } from '../types/user'
+import { Chat, User } from '../types/user'
 
 export interface userState {
   user: User | null
-  activeChat: Contact | null
+  activeChat: Chat | null
   searchQuery: string
   isAuth: boolean
 }
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
 
       state.isAuth = true
     },
-    setActiveChat: (state, action: PayloadAction<Contact>) => {
+    setActiveChat: (state, action: PayloadAction<Chat>) => {
       state.activeChat = action.payload
     },
     setSearchQuery: (state, action: PayloadAction<string>) => {

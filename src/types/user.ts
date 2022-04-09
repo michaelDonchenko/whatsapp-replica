@@ -6,17 +6,17 @@ export interface User {
   contacts: User[]
 }
 
-export interface Contact {
-  imgUrl: string
+export interface Chat {
+  uid: string
   contactName: string
-  lastConnected: string
-  unreadMessages: number
+  img: string
+  participants: User[]
   messages: Message[]
 }
 
 export interface Message {
   id: string
-  createdAt: string
+  createdAt: Date
   messageText: string
-  sentFrom: string
+  sender: string
 }

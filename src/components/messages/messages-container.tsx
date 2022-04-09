@@ -14,7 +14,7 @@ const MessagesContainer = () => {
   return (
     <>
       <Header>
-        {activeChat && (
+        {/* {activeChat && (
           <>
             <ProfileImage src={activeChat.imgUrl} />
             <NameContainer>
@@ -25,11 +25,11 @@ const MessagesContainer = () => {
             <ClipIcon />
             <DotsIcon />
           </>
-        )}
+        )} */}
       </Header>
 
       <Messages>
-        {activeChat &&
+        {/* {activeChat &&
           activeChat.messages.length > 0 &&
           activeChat.messages.map((message) => (
             <Message
@@ -38,7 +38,7 @@ const MessagesContainer = () => {
               isMyMessage={message.sentFrom === myUsername}
               time={message.createdAt}
             />
-          ))}
+          ))} */}
       </Messages>
 
       <NewMessage>

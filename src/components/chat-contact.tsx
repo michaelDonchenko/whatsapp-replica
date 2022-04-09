@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { setActiveChat } from '../redux/userSlice'
-import { Contact } from '../types/user'
+import { Chat } from '../types/user'
 import ProfileImage from './profile-image'
 
-const ChatContact: React.FC<{ contact: Contact }> = ({ contact }) => {
+const ChatContact: React.FC<{ contact: Chat }> = ({ contact }) => {
   const dispatch = useAppDispatch()
   const contactName = useAppSelector(
     (state) => state.user.activeChat?.contactName
@@ -17,16 +17,16 @@ const ChatContact: React.FC<{ contact: Contact }> = ({ contact }) => {
   const lastMessageTime =
     contact.messages[contact.messages.length - 1].createdAt
 
-  const onClick = (contact: Contact) => {
-    dispatch(setActiveChat(contact))
-  }
+  // const onClick = (contact: Contact) => {
+  //   dispatch(setActiveChat(contact))
+  // }
 
   return (
     <Container
-      onClick={() => onClick(contact)}
+      onClick={() => ''}
       isActive={contactName === contact.contactName}
     >
-      <ProfileImage src={contact.imgUrl} />
+      {/* <ProfileImage src={contact.imgUrl} />
       <NameContainer>
         <Name>{contact.contactName}</Name>
         <LastMessageText>{lastMessageText + ' ...'}</LastMessageText>
@@ -40,7 +40,7 @@ const ChatContact: React.FC<{ contact: Contact }> = ({ contact }) => {
         {contact.unreadMessages > 0 && (
           <UnreadMessagesBadge>{contact.unreadMessages}</UnreadMessagesBadge>
         )}
-      </TimeContainer>
+      </TimeContainer> */}
     </Container>
   )
 }

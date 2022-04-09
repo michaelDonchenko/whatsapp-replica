@@ -2,34 +2,32 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useAppSelector } from '../redux/hooks'
-import { Contact } from '../types/user'
+import { Chat } from '../types/user'
 import ChatContact from './chat-contact'
 
-const ChatList: React.FC<{ contacts: Contact[] }> = ({ contacts }) => {
-  const [filteredContacts, setFilteredContacts] = useState(contacts)
+const ChatList: React.FC<{ chats: Chat[] }> = ({ chats }) => {
+  const [filteredChats, setFilteredChats] = useState(chats)
 
   const { searchQuery } = useAppSelector((state) => state.user)
 
-  function filterContacts() {
+  function filterChats() {
     if (searchQuery === '') {
-      setFilteredContacts(contacts)
+      setFilteredChats(chats)
       return
     }
 
-    const filteredResult = contacts.filter((contact) =>
-      contact.contactName.match(searchQuery)
-    )
-    setFilteredContacts(filteredResult)
+    const filteredResult = chats.filter((chat) => chat.uid.match(searchQuery))
+    setFilteredChats(filteredResult)
   }
 
   useEffect(() => {
-    filterContacts()
+    filterChats()
   }, [searchQuery])
 
   return (
     <Container>
-      {filteredContacts &&
-        filteredContacts.map((contact) => (
+      {filteredChats &&
+        filteredChats.map((contact) => (
           <ChatContact key={contact.contactName} contact={contact} />
         ))}
     </Container>
