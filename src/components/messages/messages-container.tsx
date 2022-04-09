@@ -8,7 +8,7 @@ import { ReactComponent as Happy } from '../../assets/icons/happy.svg'
 import { ReactComponent as Microphone } from '../../assets/icons/microphone.svg'
 
 const MessagesContainer = () => {
-  const myUsername = useAppSelector((state) => state.user.user.username)
+  const myUsername = useAppSelector((state) => state.user.user?.username)
   const activeChat = useAppSelector((state) => state.user.activeChat)
 
   return (

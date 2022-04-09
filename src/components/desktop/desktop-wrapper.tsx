@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import MessagesContainer from './main-container'
+import MainContainer from './main-container'
 import SideContainer from './side-container'
 
 const DesktopWrapper: React.FC = () => {
   return (
     <Container>
       <SideContainer />
-      <MessagesContainer />
+      <MainContainer />
     </Container>
   )
 }
@@ -19,7 +19,7 @@ const Container = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 6px;
-  height: 95vh;
+  height: 90vh;
 `
 
 export default DesktopWrapper

@@ -1,7 +1,9 @@
 export interface User {
+  uid: string
   username: string
-  imgUrl: string
-  contacts: Contact[]
+  img: string
+  email: string
+  contacts: User[]
 }
 
 export interface Contact {

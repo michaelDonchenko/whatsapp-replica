@@ -8,16 +8,16 @@ import ChatRoom from './chat-room'
 import TopBar from './top-bar'
 
 const MobileWrapper: React.FC = () => {
-  const {
-    user: { contacts },
-    activeChat,
-  } = useAppSelector((state) => state.user)
+  // const {
+  //   user: { contacts },
+  //   activeChat,
+  // } = useAppSelector((state) => state.user)
 
   return (
     <Container>
       <TopBar />
 
-      {activeChat ? (
+      {/* {activeChat ? (
         <ChatRoom />
       ) : (
         <>
@@ -29,7 +29,7 @@ const MobileWrapper: React.FC = () => {
 
           <ChatList contacts={contacts} />
         </>
-      )}
+      )} */}
 
       <ActionsFooter />
     </Container>

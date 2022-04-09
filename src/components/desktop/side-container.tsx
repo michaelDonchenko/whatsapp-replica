@@ -8,12 +8,11 @@ import { useAppSelector } from '../../redux/hooks'
 
 const SideContainer: React.FC = () => {
   const { user } = useAppSelector((state) => state.user)
-  const { contacts } = user
 
   return (
     <Container>
       <Header>
-        <ProfileImage src={user.imgUrl} />
+        <ProfileImage src={user?.img || 'profile image'} />
         <MessageIcon />
         <DotsIcon />
       </Header>
@@ -22,7 +21,7 @@ const SideContainer: React.FC = () => {
         <SearchBar />
       </SearchWrapper>
 
-      <ChatList contacts={contacts} />
+      {/* <ChatList  /> */}
     </Container>
   )
 }

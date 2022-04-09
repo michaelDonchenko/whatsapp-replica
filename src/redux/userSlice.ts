@@ -1,23 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Contact, User } from '../types/user'
-import { user as userMock } from '../mocks/user-mock'
 
 export interface userState {
-  user: User
+  user: User | null
   activeChat: Contact | null
   searchQuery: string
+  isAuth: boolean
 }
 
 const initialState: userState = {
-  user: userMock,
+  user: null,
   activeChat: null,
   searchQuery: '',
+  isAuth: false,
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    onFirebaseLoginSuccess: (state, action: PayloadAction<User>) => {
+      if (!action.payload) return
+
+      state.user = action.payload
+
+      state.isAuth = true
+    },
     setActiveChat: (state, action: PayloadAction<Contact>) => {
       state.activeChat = action.payload
     },
@@ -30,7 +38,11 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setActiveChat, setSearchQuery, clearActiveChat } =
-  userSlice.actions
+export const {
+  setActiveChat,
+  setSearchQuery,
+  clearActiveChat,
+  onFirebaseLoginSuccess,
+} = userSlice.actions
 
 export default userSlice.reducer

@@ -7,14 +7,12 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
   font-family: sans-serif;
 }
 
-body {
+html, body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  overflow: auto
 }
 `

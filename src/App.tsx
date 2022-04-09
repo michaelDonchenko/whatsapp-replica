@@ -1,34 +1,31 @@
 import { GlobalStyles } from './global-styles'
-import Layout from './components/layout'
-import DesktopWrapper from './components/desktop/desktop-wrapper'
-import MobileWrapper from './components/mobile/mobile-wrapper'
-import { useState } from 'react'
-import { useEffect } from 'react'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import Login from './pages/login'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Main from './pages/main'
+import PrivateRoute from './router/private-route'
+import { PersistGate } from 'redux-persist/integration/react'
+import persistStore from 'redux-persist/es/persistStore'
 
 const App: React.FC = () => {
-  const [width, setWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    function onWidthChange() {
-      setWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', onWidthChange)
-
-    return () => {
-      window.removeEventListener('resize', onWidthChange)
-    }
-  }, [])
+  let persistor = persistStore(store)
 
   return (
     <Provider store={store}>
-      <Layout>
-        <GlobalStyles />
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <GlobalStyles />
 
-        {width > 500 ? <DesktopWrapper /> : <MobileWrapper />}
-      </Layout>
+          <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route path='/' element={<Main />} />
+            </Route>
+
+            <Route path='/login' element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   )
 }
