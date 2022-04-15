@@ -3,15 +3,15 @@ export interface User {
   username: string
   img: string
   email: string
-  contacts: User[]
 }
 
-export interface Chat {
+export interface Room {
   uid: string
-  contactName: string
-  img: string
-  participants: User[]
+  status: 'pending' | 'active'
+  invitedFrom: string
+  participants: string[]
   messages: Message[]
+  img: string
 }
 
 export interface Message {

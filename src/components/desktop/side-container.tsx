@@ -3,11 +3,14 @@ import ProfileImage from '../profile-image'
 import SearchBar from '../search-bar'
 import { ReactComponent as Dots } from '../../assets/icons/dots.svg'
 import { ReactComponent as Add } from '../../assets/icons/add.svg'
-import ChatList from '../chat-list'
+import RoomsList from '../rooms-list'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { useState, useRef, useEffect } from 'react'
 import { firebaseLogout } from '../../firebase'
 import { onFirebaseLogout } from '../../redux/userSlice'
+import { MutableRefObject } from 'react'
+import { fetchRooms } from '../../api/firestore'
+import { Room } from '../../types/types'
 
 interface SideContainerProps {
   setContactsSidebar: React.Dispatch<React.SetStateAction<boolean>>
@@ -19,9 +22,13 @@ const SideContainer: React.FC<SideContainerProps> = ({
   const { user } = useAppSelector((state) => state.user)
   const [openDropdown, setOpenDropdown] = useState(false)
   const dispatch = useAppDispatch()
-  const dropdownRef = useRef(null)
+  const dropdownRef: MutableRefObject<null | HTMLDivElement> = useRef(null)
+  const [rooms, setRooms] = useState<Room[]>([])
 
-  const onLogout = async () => {
+  const onLogout = async (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.stopPropagation()
     try {
       await firebaseLogout()
       dispatch(onFirebaseLogout())
@@ -33,7 +40,10 @@ const SideContainer: React.FC<SideContainerProps> = ({
   }
 
   const clickListener = (event: MouseEvent) => {
-    if (dropdownRef && dropdownRef.current) {
+    if (
+      event.target instanceof HTMLElement &&
+      !dropdownRef?.current?.contains(event.target)
+    ) {
       setOpenDropdown(false)
     }
   }
@@ -44,6 +54,17 @@ const SideContainer: React.FC<SideContainerProps> = ({
     return () => {
       document.removeEventListener('mousedown', clickListener)
     }
+  }, [])
+
+  const getRooms = async () => {
+    if (user) {
+      const response = await fetchRooms(user.uid)
+      setRooms(response)
+    }
+  }
+
+  useEffect(() => {
+    getRooms()
   }, [])
 
   return (
@@ -57,7 +78,7 @@ const SideContainer: React.FC<SideContainerProps> = ({
         {openDropdown && (
           <DropdownCopntainer ref={dropdownRef}>
             <Option>Add contact</Option>
-            <Option onClick={() => onLogout()}>Logout</Option>
+            <Option onClick={(event) => onLogout(event)}>Logout</Option>
           </DropdownCopntainer>
         )}
       </Header>
@@ -66,7 +87,7 @@ const SideContainer: React.FC<SideContainerProps> = ({
         <SearchBar />
       </SearchWrapper>
 
-      <ChatList chats={[]} />
+      <RoomsList rooms={rooms} />
     </Container>
   )
 }

@@ -1,18 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ContactsSidebar from '../contacts-sidebar'
 import MainContainer from './main-container'
 import SideContainer from './side-container'
+import { fetchUsers } from '../../api/firestore'
+import { useAppSelector } from '../../redux/hooks'
+import { User } from '../../types/types'
 
 const DesktopWrapper: React.FC = () => {
   const [contactsSidebar, setContactsSidebar] = useState(false)
+  const { user: userFromRedux } = useAppSelector((state) => state.user)
+
+  const [users, setUsers] = useState<User[]>([])
+
+  const getUsers = async () => {
+    if (userFromRedux) {
+      const response = await fetchUsers(userFromRedux.uid)
+      setUsers(response)
+    }
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
 
   return (
     <Container>
       <SideContainer setContactsSidebar={setContactsSidebar} />
 
       {contactsSidebar && (
-        <ContactsSidebar setContactsSidebar={setContactsSidebar} />
+        <ContactsSidebar
+          usersFromDB={users}
+          setContactsSidebar={setContactsSidebar}
+        />
       )}
 
       <MainContainer />

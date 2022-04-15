@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useAppSelector } from '../../redux/hooks'
-import ChatList from '../chat-list'
+import ChatList from '../rooms-list'
 import SearchBar from '../search-bar'
 import ActionsFooter from './actions-footer'
 import ActionsHeader from './actions-header'
